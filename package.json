@@ -1,0 +1,25 @@
+{
+  "name": "educative-plataform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruan177/Educative-Plataform.git"
+  },
+  "author": "Ruan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruan177/Educative-Plataform/issues"
+  },
+  "homepage": "https://github.com/ruan177/Educative-Plataform#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.25.8"
+  }
+}
