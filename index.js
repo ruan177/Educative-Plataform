@@ -1,7 +1,7 @@
 //const { urlencoded } = require('express')
 const express = require('express')
 const path = require('path')
-const {content} = require('./controllers')
+const {content, usuario} = require('./controllers')
 
 const app = express()
 
@@ -13,6 +13,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static(path.join(__dirname, '/public')))
 
 app.use('/', content)
+app.use('/login', usuario)
 
 app.listen(80, ()=>{
     console.log("working on port 80")
