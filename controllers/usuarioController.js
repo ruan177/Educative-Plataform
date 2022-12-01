@@ -4,29 +4,45 @@ const {Usuario} = require('../models')
 const router = express()
 
 
-router.get('/', (req, res)=>{
+router.get('/login', (req, res)=>{
     res.status(200).render('login')
 })
 
 router.get('/cadastro', (req, res)=>{
     res.status(200).render('cadastro')
 })
-router.post('/', async (req, res)=>{
-    const {email, password} = req.body
 
+router.get('/erro', (req, res)=>{
+    res.status(200).render('erro')
+})
+
+router.post('/login', async (req, res)=>{
+    const {email, password} = req.body
+    
     const usuario = await Usuario.findOne({
-        where:{
+        where: {
             email: email,
             password: password
         }
     })
+   
+    req.session.login = false;
 
-    req.session.login = false
-    if(Usuario){
+    if(usuario){
         req.session.login = true
-        res.redirect('/usuarios')
+        req.session.nomeUsuario = usuario.username
+        res.redirect('/home')
+        //res.send('usuario logado');
+    }else{
+        res.send('erro usuario nao encontrado')
     }
-    res.redirect('/erro')
+    //res.redirect('/erro')
+})
+
+router.post('/novo', async (req, res)=>{
+    const {username, email, password } = req.body
+    await  Usuario.create({username, email, password})
+    res.send('usuario criado')
 })
 
 module.exports = router

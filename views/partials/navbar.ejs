@@ -21,15 +21,29 @@
       </li>
     </ul>
     <ul class="nav">
-      <li class="nav-item"><a href="/login" class="nav-link link-dark px-2">Entrar</a></li>
-      <li class="nav-item"><a href="/login/cadastro" class="nav-link link-dark px-2">Cadastre-se</a></li>
+      <% if ( logado ) { %>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= nomeUsuario %> <img >
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
+      </li>
+      <% } else { %>
+        <li class="nav-item"><a href="/usuarios/login" class="nav-link link-dark px-2">Entrar</a></li>
+        <li class="nav-item"><a href="/usuarios/cadastro" class="nav-link link-dark px-2">Cadastre-se</a></li>
+       <% } %>
+
     </ul>
   </div>
 </nav>
 <header class="py-3 mb-4 border-bottom">
   <div class="container d-flex flex-wrap justify-content-center">
     <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-      <img src="/img/study.jpeg" width="30" height="28" class="d-inline-block align-text-top"> 
+      <img src="/img/ranny.png" width="60" height="52" class="d-inline-block align-text-top"> 
       
       <span class="fs-4">Lucaria Academy</span>
     </a>
