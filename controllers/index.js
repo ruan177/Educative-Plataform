@@ -1,8 +1,8 @@
-const content = require('./contentController')
+const home = require('./homeController')
 const usuario = require('./usuarioController')
 
 const controllers = {
-    content: content,
+    home: home,
     usuario: usuario,
 }    
    
