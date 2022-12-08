@@ -3,23 +3,31 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('usuarios',{
+    await queryInterface.createTable('usuarioCurso',{
       id: {
         type: Sequelize.INTEGER,
-        prymaryKey: true,
+        primaryKey: true,
         autoIncrement: true,
         allowNull: false
       },
-      username: {
-        type: Sequelize.STRING,
+      usuarioId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'usuarios',
+          key: 'id'
+        },
+        unique:true,
+        onDelete: 'CASCADE',
         allowNull: false
       },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false
-      },
-      password: {
-        type: Sequelize.STRING,
+      cursoId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'cursos',
+          key: 'id'
+        },
+        unique:true,
+        onDelete: 'CASCADE',
         allowNull: false
       },
       createdAt: {
@@ -33,21 +41,10 @@ module.exports = {
         defaultValue: Sequelize.fn('NOW')  
       }
     });
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('usuarios');
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+    await queryInterface.dropTable('usuarioCurso');
+ 
   }
 };

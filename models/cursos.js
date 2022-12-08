@@ -4,4 +4,11 @@ const Curso = (sequelize, DataTypes)=>{
         descricao: DataTypes.STRING
     })
 }
+Curso.associate = (models)=>{
+    Curso.belongsToMany(models.Usuario,{
+        through: 'UsuarioCurso',
+        as: 'usuarios',
+        foreignKey: 'CursoId',
+    })
+}
 module.exports = Curso

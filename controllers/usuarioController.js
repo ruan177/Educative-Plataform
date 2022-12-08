@@ -5,11 +5,11 @@ const router = express()
 
 
 router.get('/login', (req, res)=>{
-    res.status(200).render('login')
+    res.status(200).render('usuarios/login')
 })
 
 router.get('/cadastro', (req, res)=>{
-    res.status(200).render('cadastro')
+    res.status(200).render('usuarios/cadastro')
 })
 
 router.get('/erro', (req, res)=>{
@@ -50,6 +50,7 @@ router.post('/cadastro', async (req, res)=>{
 
     res.redirect('/usuarios/login')
 })
+
 router.post('/delete', async (req, res)=>{
     await Usuario.destroy(
         {
