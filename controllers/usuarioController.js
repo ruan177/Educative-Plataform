@@ -19,6 +19,15 @@ router.get('/logoff', (req, res)=>{
     req.session.destroy();
     res.redirect('/home');
 })
+router.get('/settings', (req, res)=>{
+    const username = req.session.nomeUsuario
+    const email  = req.session.emailUsuario
+    res.status(200).render('usuarios/settings', {username, email})
+})
+/*router.get('/delete', (req, res)=>{
+    const id = req.session.IdUsuario
+    res.status(200).redirect(`/usuarios/delete/${id}`)
+})*/
 
 router.post('/login', async (req, res)=>{
     const {email, password} = req.body
@@ -35,6 +44,7 @@ router.post('/login', async (req, res)=>{
     if(usuario){
         req.session.login = true
         req.session.nomeUsuario = usuario.username
+        req.session.emailUsuario = usuario.email
         req.session.IdUsuario = usuario.id
         res.redirect('/home')
         //res.send('usuario logado');
@@ -51,13 +61,27 @@ router.post('/cadastro', async (req, res)=>{
     res.redirect('/usuarios/login')
 })
 
-router.post('/delete', async (req, res)=>{
-    await Usuario.destroy(
+router.patch('/settings', async (req, res)=>{
+    const {username, email, password} = req.body;
+
+    await Usuario.update(
+        {username, email, password},
         {
             where: {id: req.session.IdUsuario}
         }
     );
-    res.redirect('/home')
+    res.redirect('/usuarios/login')
+
+})
+
+router.delete('/delete/:id', async (req, res)=>{
+
+    await Usuario.destroy(
+        {
+            where: {id: req.session.id}
+        }
+    );
+     res.status(202).redirect('/home')
 } )
 
 module.exports = router

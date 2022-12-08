@@ -1,6 +1,6 @@
 <%- include('./header.ejs')  %> 
 
-  
+<script src='/js/excluirUsuario.js'></script>
 
 
   
@@ -25,8 +25,8 @@
         </a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="#">My Courses</a></li>
-          <li><a class="dropdown-item" href="#">Excluir a conta</a></li>
-          <li><a class="dropdown-item" href="#">Alterar a conta</a></li>
+          <li><a class="dropdown-item" href="/usuarios/settings">Settings</a></li>
+          <li><a class="dropdown-item" href=" " onclick=" apagaUsuario(id)">Deletar Conta</a></li>
           <li><a class="dropdown-item" href="/usuarios/logoff">Logout</a></li>
 
         </ul>

@@ -4,10 +4,10 @@ const session = require('express-session')
 const router = express()
 
 router.get('/', (req, res)=>{
-    logado = req.session.login
-    nomeUsuario = req.session.nomeUsuario
-
-    res.status(200).render('index', {logado, nomeUsuario})
+    const logado = req.session.login
+    const nomeUsuario = req.session.nomeUsuario
+    const id = req.session.IdUsuario
+    res.status(200).render('index', {logado, nomeUsuario, id})
 })
 
 module.exports = router

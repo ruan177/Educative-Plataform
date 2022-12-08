@@ -1,0 +1,74 @@
+<%- include("../partials/header.ejs") %> 
+
+<link href="/css/settings.css" rel="stylesheet">
+<body class="bg-light">
+<aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
+    <h2 class="h6 pt-4 pb-3 mb-4 border-bottom">Return</h2>
+    <nav class="small" id="toc">
+      <ul class="list-unstyled">
+        <li class="my-2">
+          
+            <a href="/home" class="btn "></a>Home
+          
+        <li class="my-2">
+          
+            <a href="/usuarios/login" class="btn "></a>Login
+          
+        </li>
+        
+      </ul>
+    </nav>
+  </aside>
+<div class="bd-cheatsheet container-fluid bg-body">
+  <section id="forms">
+    <h2 class="sticky-xl-top fw-bold pt-3 pt-xl-5 pb-2 pb-xl-3">Settings</h2>
+
+    <article class="my-3" id="overview">
+      <div class="bd-heading sticky-xl-top align-self-start mt-5 mb-3 mt-xl-0 mb-xl-2">
+        <h3>Change Account</h3>
+        
+      </div>
+
+      <div>
+        <div class="bd-example">
+        <form action="/usuarios/settings" method="POST">
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Username: </label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%= username %> ">
+            </div>
+            </div>
+            <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">New Username </label>
+            <input name="username" type="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your username with anyone else.</div>
+            </div>
+        <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email: </label>
+            <div class="col-sm-10">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%= email %>">
+            </div>
+            </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">New Email </label>
+            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">New Password</label>
+            <input name="password" type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Check me out</label>
+          </div>
+
+          
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        </div>
+      </div>
+    </article>
+</section>
+</div>
+</body>
