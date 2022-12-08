@@ -3,7 +3,7 @@ const express = require('express')
 const path = require('path')
 const methodOverride = require('method-override')
 
-const {home, usuario} = require('./controllers')
+const {home, usuario, curso} = require('./controllers')
 
 const app = express()
 const session = require('express-session')
@@ -39,6 +39,7 @@ app.use(methodOverride('_method'));
 
 app.use('/home', home)
 app.use('/usuarios', usuario)
+app.use('/cursos', curso)
 app.use(secure_pass)
 
 

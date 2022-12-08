@@ -1,9 +1,11 @@
-const home = require('./homeController')
-const usuario = require('./usuarioController')
+const homeController = require('./homeController')
+const usuarioController = require('./usuarioController')
+const cursoController = require('./cursosController')
 
 const controllers = {
-    home: home,
-    usuario: usuario,
+    home: homeController,
+    usuario: usuarioController,
+    curso: cursoController
 }    
    
 module.exports = controllers

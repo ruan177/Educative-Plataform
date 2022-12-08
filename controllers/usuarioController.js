@@ -15,6 +15,10 @@ router.get('/cadastro', (req, res)=>{
 router.get('/erro', (req, res)=>{
     res.status(200).render('erro')
 })
+router.get('/logoff', (req, res)=>{
+    req.session.destroy();
+    res.redirect('/home');
+})
 
 router.post('/login', async (req, res)=>{
     const {email, password} = req.body
@@ -31,6 +35,7 @@ router.post('/login', async (req, res)=>{
     if(usuario){
         req.session.login = true
         req.session.nomeUsuario = usuario.username
+        req.session.IdUsuario = usuario.id
         res.redirect('/home')
         //res.send('usuario logado');
     }else{
@@ -39,10 +44,19 @@ router.post('/login', async (req, res)=>{
     //res.redirect('/erro')
 })
 
-router.post('/novo', async (req, res)=>{
+router.post('/cadastro', async (req, res)=>{
     const {username, email, password } = req.body
-    await  Usuario.create({username, email, password})
-    res.send('usuario criado')
+    await Usuario.create({username, email, password})
+
+    res.redirect('/usuarios/login')
 })
+router.post('/delete', async (req, res)=>{
+    await Usuario.destroy(
+        {
+            where: {id: req.session.IdUsuario}
+        }
+    );
+    res.redirect('/home')
+} )
 
 module.exports = router
